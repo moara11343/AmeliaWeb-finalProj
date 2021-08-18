@@ -1,0 +1,48 @@
+<%- include("partials/header") %>.
+
+<% 
+console.log(paymentkey)
+%>
+<style>
+            table {
+        margin:0 auto;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 1200px;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+</style>
+<a class="backbtn" href="/store">BACK</a>
+
+<table class="productlist">
+    <tr>
+      <th>ID</th>
+      <th>DATE</th>
+      <th>PRICE</th>
+
+    </tr>
+    <%if(paymentkey.length > 0){
+    for(var i=0; i< paymentkey.length; i++){
+    %>
+    <tr class="productlists" id="" tabindex="0" style="outline: none; cursor: pointer;" onclick="window.location.href = '/history/<%=paymentkey[i].payment_key%>'" ;
+    " >
+      <td id="id"><%=paymentkey[i].payment_key%></td>
+      <td id="name"><%=paymentkey[i].payment_createdat%></td>
+      <td id="price"><%=paymentkey[i].payment_total%>฿</td>
+    </tr>
+    <%}}else{%>
+    <tr><td colspan="6" style="text-align: center;">Not found any history</td></tr>
+    <%}%>
+  </table>
+
+
+<%- include("partials/footer") %>

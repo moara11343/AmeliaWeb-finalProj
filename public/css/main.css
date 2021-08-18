@@ -1,0 +1,87 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+html{
+    font-family: 'Raleway', sans-serif;
+}
+
+.header{
+    background: black;
+    width: 100%;
+    text-transform: uppercase;
+    display: flex;
+    padding: 0 50px;
+    position: relative;
+    height: 100px;
+}
+
+.header a.logo{
+    margin-right: auto;
+    line-height: 100px;
+}
+
+.header a{
+    color: white;
+    text-decoration: none;
+    padding: 0 10px ;
+    line-height: 100px;
+    display: inline-block;
+}
+.header a i{
+    transform: scale(1.2);
+}
+
+.profilee{
+    position: relative;
+}
+
+.profilelink{
+    position: absolute;
+    display: block;
+    transform-origin: top;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) scaleY(0);
+    background: red;
+    transition: .5s;
+}
+
+.profilelink.show{
+    transform: translateX(-50%) scaleY(1);
+}
+
+.profilelink a{
+    position: relative;
+    display: block;
+}
+
+.circlecount{
+    margin-left: 5px;
+    padding: 0 5px;
+    border-radius: 50px;
+    width: 0%;
+    height: 0;
+    background: white;
+}
+
+.backbtn{
+    text-decoration: none;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 100px;
+    background: rgb(53, 53, 53);
+    display: block;
+    padding: 10px;
+    color: white;
+    transition: .5s;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.backbtn:hover{
+    background: rgb(29, 29, 29);
+    color: rgb(255, 255, 255)52, 247, 247);
+}

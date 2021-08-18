@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/form.css">
+    <link rel="stylesheet" href="/css/fontstyle.css">
+    <link rel="stylesheet" href="/css/bgcoloranimation.css">
+
+</head>
+<body>
+    <form action="" method="POST" class="signup">
+    SIGNUP<br>
+    <input type="text" placeholder="Firstname" name="fname" required>
+    <input type="text" placeholder="Lastname" name="lname" required>
+    <input type="text" placeholder="Username" name="username" required>
+    <input type="text" placeholder="Phone Number" name="phone" required>
+    <input type="text" placeholder="Email" class="wide" name="email" required>
+    <input type="password" placeholder="password" id="password" name="password" required>
+    <input type="password" placeholder="repassword" id="repassword" name="repassword" required>
+    <textarea id="address" name="address" rows="4" cols="50" placeholder="address" required></textarea>
+    <input type="submit" id="submit" value="Signup"><br>
+    Have an account go <a href="/login">Login</a>
+
+    </form>
+    <script>
+        var password = document.getElementById("password")
+        var repassword = document.getElementById("repassword")
+        var submit = document.getElementById("submit")
+        submit.addEventListener("click",function(event){
+            if(password.value != repassword.value){
+                event.preventDefault()
+                alert("your password not match")
+                repassword.value = "";
+            }
+        })
+    </script>
+</body>
+</html>

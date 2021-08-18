@@ -1,0 +1,76 @@
+<%- include("partials/header") %>.
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>The Generics | Store</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="/css/style.css" />
+        <script src="https://js.stripe.com/v3/"></script>
+        <script src="https://checkout.stripe.com/checkout.js" defer></script>
+        <script>
+        var stripePublicKey = '<%= stripePublicKey %>'
+        
+        </script>
+        <script src="/js/store.js" defer></script>
+    </head>
+    <body>
+      
+        <section class="container content-section">
+            <h2 class="section-header">SHOP</h2>
+            <div class="shop-items">
+                <% items.forEach(function(item){%>
+
+                <div class="shop-item" data-item-id="<%= item.id %>">
+                    <span class="shop-item-title"><%= item.name %></span>
+                    <img class="shop-item-image" src="upload/<%= item.image %>">
+                    <div class="shop-item-details">
+                        <span class="shop-item-price">$<%= item.price %></span>
+                        <button class="btn btn-primary shop-item-button" type="button">ADD TO CART</button>
+                    </div>
+                </div>
+                <%})%>
+        </section>
+
+        
+        <section class="container content-section">
+            <h2 class="section-header">CART</h2>
+            <div class="cart-row">
+                <span class="cart-item cart-header cart-column">ITEM</span>
+                <span class="cart-price cart-header cart-column">PRICE</span>
+                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+            </div>
+            <div class="cart-items">
+            </div>
+            <div class="cart-total">
+                <strong class="cart-total-title">Total</strong>
+                <span class="cart-total-price">$0</span>
+            </div>
+            <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+        </section>
+        <div class="footer">
+            <div style="top: 20%; transform: translateY(50%); width: 100%; text-align: center; position: absolute;">
+                2023 By Mo And Stang
+            </div>
+            <div class="item-foot" style="top: 35%; transform: translateY(80%); width: 100%; position: absolute; text-align: center; display: block;">
+                <a class="link" href="http://https://open.spotify.com/album/65PBDisEUcXjXcmZPJUgMA?highlight=spotify:track:16cnjWWwylqR9lI07nO7R5"><i class="fab fa-2x fa-spotify"></i></a>
+                <a class="link" href="http://https://www.facebook.com/Amelialabel.official/"> <i class="fab fa-2x fa-facebook"></i></a>
+                <a class="link" href="http://https://twitter.com/amelialabel"><i class="fab fa-2x fa-twitter"></i></a>
+                <a class="link" href="https://www.youtube.com/c/AmeliaLabel"><i class="fab fa-2x fa-youtube"></i></a>
+                <a class="link" href="http://instagram.com/amelia.label/"><i class="fab fa-2x fa-instagram"></i></a>
+
+            </div>
+        </div>
+        <script>
+            var allbutton = document.querySelectorAll("button")
+            var loginned = <%=login%>;
+            if(!loginned){
+                allbutton.forEach(function(element){
+                    element.addEventListener("click",function(){
+                        window.location.href = "/login";
+                    })
+                })
+            }
+        </script>
+    </body>
+</html>

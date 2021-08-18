@@ -1,0 +1,103 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+}
+
+form{
+    border-radius: 50px;
+    text-align: center;
+    width: 300px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: absolute;
+    display: block;
+    background: rgb(31, 31, 31);
+    padding: 50px;
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input, textarea{
+/* border-radius: 50px; */
+border: none;
+padding: 10px;
+width: 100%;
+display: block;
+margin: 10px 0;
+}
+
+input[type="submit"]{
+    cursor: pointer;
+    color: white;
+    background: rgb(2, 52, 117);
+    transition: background-color .5s ease , color .5s ease;
+}
+
+input[type="submit"]:hover{
+    color: black;
+    background: rgb(255, 255, 255);
+}
+
+form a{
+    text-decoration: none;
+    color: rgb(20, 129, 255);
+}
+
+form.signup{
+    width: 550px;
+    text-align: center;
+
+}
+form.signup input{
+    width: 200px;
+    display: inline-block;
+}
+form.signup input.wide, form.signup textarea{
+    width: 400px;
+    display: inline-block;
+}
+
+form.addproduct{
+    position: relative;
+    top: 0%;
+    left: 0;
+    transform: none;
+    width: 700px;
+}
+form.addproduct .productdetail{
+    text-align: left;
+    display: inline-block;
+    width: 150px;
+    width: 25%;
+    margin: 10px 0;
+}
+
+form.addproduct .productdetail.widefluid{
+    display: inline-block;
+    width: 100%;
+}
+
+form.addproduct .productdetail.wide{
+    display: inline-block;
+    width: 48%;
+}
+
+.backbtn{
+    width: 100%;
+    background: rgb(53, 53, 53);
+    display: block;
+    padding: 10px;
+    color: white;
+    transition: .5s;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.backbtn:hover{
+    background: white;
+    color: black;
+}

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/fontstyle.css">
+    <style>
+        *{
+            outline: none;
+            padding: 0%;
+            margin: 0%;
+            box-sizing: border-box;
+        }
+        .header{
+            display: flex;
+            background: black;
+            color: white;
+            line-height: 50px;
+            padding: 0 10px;
+
+        }
+        .logo{
+            margin-right: auto;
+        }
+        .body{
+            padding: 50px;
+        }
+        .searchbar{
+            height: 40px;
+            display: flex;
+            line-height: 40px;
+        }
+        .searchbar .searchinput{
+            display: inline-block;
+            height: 100%;
+            width: 300px;
+            padding: 10px;
+            outline: none;
+        }
+        span#clear, .createbtn{
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            background: red;
+            padding: 0 10px;
+            height: 100%;
+        }
+        .createbtn{
+            margin-left: 10px;
+            background: rgb(3, 177, 75);
+        }
+        .menuforadmin{
+            display: flex;
+            line-height: 40px;
+        }
+        .headlist{
+            margin-right: auto;
+        }
+        table {
+        margin:0 auto;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 1200px;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+
+        .productlist{
+        margin-top: 50px;
+        }
+
+        button{
+            outline: none;
+            border: none;
+            width: 100px;
+            line-height: 40px;
+        }
+        button#edit{
+            color: white;
+            background: rgb(236, 162, 0);
+        }
+        button#delete{
+            color: white;
+            background: red;
+        }
+        th,button{
+            text-align: center;
+        }
+        td#btn,td#price{
+            text-align: center;
+        }
+
+        #imageinput {
+        color: transparent;
+        width: 150px;
+        }
+
+        .reqinput.image{
+            text-align: left;
+            opacity: 0.9;
+            transition: .5s ease;
+            background: transparent;
+            position: relative;
+            z-index: 0;
+        }
+
+        .reqinput.image:hover{
+            opacity: 1;
+            background: transparent;
+        }
+
+
+        #previewimg{
+            display: block;
+
+        }
+
+        #previewimage{
+            display: flex;
+        }
+        .custom-file-input {
+        padding: 0;
+        margin: 0;
+        /* color: transparent; */
+        }
+        .custom-file-input::-webkit-file-upload-button {
+        display: none;
+        visibility: hidden;
+        }
+        .custom-file-input::before {
+        margin: 10px 0;
+        margin-right: 10px;
+        content: 'CHANGE IMAGE';
+        color: black;
+        display: inline-block;
+        background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+        padding: 0px 8px;
+        line-height: 40px;
+        outline: none;
+        white-space: nowrap;
+        -webkit-user-select: none;
+        cursor: pointer;
+        text-shadow: 1px 1px #fff;
+        font-weight: 700;
+        font-size: 10pt;
+        }
+        .custom-file-input:hover::before {
+        border-color: black;
+        }
+        .custom-file-input:active {
+        outline: 0;
+        }
+        .custom-file-input:active::before {
+        background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9); 
+        }
+    </style>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+<body>
+    
+    <div class="header">
+        <div class="logo"><a href="/productlist">AMELIA</a></div>
+        <div class="menulink"><a href="/logout">LOGOUT</a></div>
+    </div>
+    <div class="body">
+        <form action="" id="form_id" method="POST" class="addproduct" enctype="">
+            <div>EDIT PRODUCT</div><br>
+            <div class="productdetail">
+                ID Product
+                <input type="text" name="id" value="<%=productdata.id%>" required>
+            </div>
+            <div class="productdetail wide">
+                Name Product
+                <input type="text" name="name" value="<%=productdata.name%>" required>
+            </div>
+            <div class="productdetail">
+                Price Product
+                <input type="text" name="price" value="<%=productdata.price%>" required>
+            </div>
+            <div class="productdetail widefluid">
+                IMAGE
+                <input type="file" class="custom-file-input" id="upload" name="image" value="<%=productdata.image%>" >
+                <img id="preview" src="/upload/<%=productdata.image%>" alt="" width="500px" >
+            </div>
+            <input type="submit" value="UPDATE">
+            <a class="backbtn" href="/productlist">BACK</a>
+
+
+        </form>
+
+
+    <script>
+        var fileinput = document.getElementById("upload")
+        let fileReader = new FileReader();
+        var preview = document.getElementById("preview")
+        fileinput.addEventListener("change",function(e){
+            document.getElementById("form_id").action += '/img';
+            document.getElementById("form_id").enctype = "multipart/form-data";
+            if ( fileinput.files && fileinput.files.length > 0 ){
+        fileReader.readAsDataURL(fileinput.files[0]);
+        fileReader.onload = (e) => {
+            preview.src = e.target.result;
+        }
+        }
+        })
+    </script>
+
+    </div>
+
+</body>
+</html>

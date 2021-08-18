@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/fontstyle.css">
+    <style>
+        *{
+            outline: none;
+            padding: 0%;
+            margin: 0%;
+            box-sizing: border-box;
+        }
+        .header a{
+            text-decoration: none;
+            color: white;
+        }
+        .header{
+            display: flex;
+            background: black;
+            color: white;
+            line-height: 50px;
+            padding: 0 10px;
+
+        }
+        .logo{
+            margin-right: auto;
+        }
+        .body{
+            padding: 50px;
+        }
+        .searchbar{
+            height: 40px;
+            display: flex;
+            line-height: 40px;
+        }
+        .searchbar .searchinput{
+            display: inline-block;
+            height: 100%;
+            width: 300px;
+            padding: 10px;
+            outline: none;
+        }
+        span#clear, .createbtn{
+            text-decoration: none;
+            color: white;
+            display: inline-block;
+            background: red;
+            padding: 0 10px;
+            height: 100%;
+        }
+        .createbtn{
+            margin-left: 10px;
+            background: rgb(3, 177, 75);
+        }
+        .menuforadmin{
+            display: flex;
+            line-height: 40px;
+        }
+        .headlist{
+            margin-right: auto;
+        }
+        table {
+        margin:0 auto;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 1200px;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+
+        .productlist{
+        margin-top: 50px;
+        }
+
+        button{
+            cursor: pointer;
+            outline: none;
+            border: none;
+            width: 100px;
+            line-height: 40px;
+        }
+        button#edit{
+            color: white;
+            background: rgb(236, 162, 0);
+        }
+        button#delete{
+            color: white;
+            background: red;
+        }
+        th,button{
+            text-align: center;
+        }
+        td#btn,td#price{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <%
+    var productdata;
+    var productlist = productdata || []
+
+    %>
+    
+    <div class="header">
+        <div class="logo"><a href="/productlist">AMELIA</a></div>
+        <div class="menulink"><a href="/logout">LOGOUT</a></div>
+    </div>
+    <div class="body">
+        <div class="menuforadmin">
+        <div class="headlist">PRODUCTS</div>
+        <div class="searchbar"><input class="searchinput" type="text" placeholder="Search Product Name"><span style="cursor: pointer;" tabindex="0" onclick="clearbtn()" id="clear">CLEAR</span></div>
+        <a href="/createproduct" class="createbtn">CREATE</a>
+        </div>
+        <table class="productlist">
+            <tr>
+              <th>ID</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Edit</th>
+              <th>Delete</th>
+
+            </tr>
+            <%if(productlist.length > 0){
+            for(var i=0; i<productlist.length; i++){
+            %>
+            <tr class="productlists" id="<%=productlist[i].id%>">
+              <td id="id"><%=productlist[i].id%></td>
+              <td id="image"><img src="/upload/<%=productlist[i].image %>" width="200px" alt=""></td>
+              <td id="name"><%=productlist[i].name%></td>
+              <td id="price"><%=productlist[i].price%>฿</td>
+              <td id="btn"><button id="edit" onclick="changelocation('/editproduct/<%=productlist[i].id%>')">EDIT</button></td>
+              <td id="btn"><button id="delete" onclick="deleteproduct('/deleteproduct/<%=productlist[i].id%>')">DELETE</button></td>
+            </tr>
+            <%}}else{%>
+            <tr><td colspan="6" style="text-align: center;">Not found any product</td></tr>
+            <%}%>
+          </table>
+          <script>
+              function changelocation(path){
+                window.location.href = path;
+              }
+              function deleteproduct(path){
+                var answer = confirm("ARE YOU SURE ABOUT THAT");
+                if(answer){
+                    window.location.href = path;
+                }
+              }
+              var tablerow = document.querySelectorAll(".productlists")
+              var searchbar = document.querySelector("input.searchinput");
+              searchbar.addEventListener("input",function(){
+                  if(this.value != ""){
+                  tablerow.forEach(function(ele){
+                      if(!ele.id.includes(searchbar.value)){
+                          ele.style.display = "none"
+                      }
+                  })
+                  }
+                  else{
+                    tablerow.forEach(function(ele){
+                          ele.style.display = "";
+                  })
+                  }
+              })
+
+            function clearbtn(){
+                var tablerow = document.querySelectorAll(".productlists")
+                var searchbar = document.querySelector("input.searchinput");
+                searchbar.value = ""
+                tablerow.forEach(function(ele){
+                          ele.style.display = "";
+                })
+            }
+          </script>
+    </div>
+</body>
+</html>

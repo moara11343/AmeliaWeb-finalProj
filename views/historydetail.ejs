@@ -1,0 +1,54 @@
+<%- include("partials/header") %>.
+
+<% 
+console.log(paymentdetail)
+%>
+<style>
+            table {
+        margin:0 auto;
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 1200px;
+        }
+
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+        }
+
+        tr:nth-child(even) {
+        background-color: #dddddd;
+        }
+</style>
+<a class="backbtn" href="/history">BACK</a>
+
+<table class="productlist">
+    <tr>
+      <th>NO</th>
+      <th>IMAGE</th>
+      <th>NAME</th>
+      <th>AMOUNT</th>
+      <th>SUM</th>
+
+
+    </tr>
+    <%if(paymentdetail.length > 0){
+    for(var i=0; i< paymentdetail.length; i++){
+    %>
+    <tr class="productlists" id="" tabindex="0" style="outline: none;" onclick="window.location.href = '/history/<%=paymentdetail[i].payment_key%>';
+    " >
+    <td id="no"><%=i+1%></td>
+      <td id="image"><img src="/upload/<%=paymentdetail[i].image%>" width="200px" alt=""></td>
+      <td id="name"><%=paymentdetail[i].name%></td>
+      <td id="amount"><%=paymentdetail[i].amount%></td>
+      <td id="price"><%=paymentdetail[i].sum%>฿</td>
+
+    </tr>
+    <%}}else{%>
+    <tr><td colspan="6" style="text-align: center;">Not found any history</td></tr>
+    <%}%>
+  </table>
+
+
+<%- include("partials/footer") %>

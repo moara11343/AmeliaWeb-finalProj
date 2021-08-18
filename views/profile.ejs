@@ -1,0 +1,25 @@
+<%- include("partials/header") %>.
+<% var profileinfo 
+if(profileinfo){
+%>
+<link rel="stylesheet" href="/css/form.css">
+<link rel="stylesheet" href="/css/bgcoloranimation.css">
+
+<form action="" method="POST" class="signup">
+    PROFILE<br>
+    <input type="text" placeholder="Firstname" name="fname" value="<%=profileinfo.firstname%>"  required>
+    <input type="text" placeholder="Lastname" name="lname"  value="<%=profileinfo.lastname%>" required>
+    <input type="text" placeholder="Username" name="username"  value="<%=profileinfo.username%>" required>
+    <input type="text" placeholder="Phone Number" name="phone"  value="<%=profileinfo.phone%>" required>
+    <input type="text" placeholder="Email" name="email"  value="<%=profileinfo.email%>" required>
+    <input type="password" placeholder="password" id="password" name="password" value="<%=profileinfo.password%>"  required>
+    <textarea id="address" name="address" rows="4" cols="50" placeholder="address" required><%=profileinfo.address%></textarea>
+    <input type="submit" id="submit" value="Update">
+</form>
+
+<% }
+else{
+%>
+Go back to login first
+<% } %>
+<%- include("partials/footer") %>
